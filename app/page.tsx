@@ -74,6 +74,7 @@ export default function Home() {
           />
           <div className="balance">$0 available</div>
           <div className="other-sites-label">Other Sites:</div>
+          <a href="https://x.com/FaucetHype" target="_blank" rel="noopener noreferrer">X (Twitter)</a>
           <a href="#">Solana.com</a>
           <a href="#">CoinGecko.com</a>
           <a href="#">Phantom.app</a>
