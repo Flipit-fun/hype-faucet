@@ -1,41 +1,15 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
-
-const CAPTCHA_WORDS: [string, string][] = [
-  ["Qbiterc", "the"],
-  ["faucet", "node"],
-  ["solana", "hype"],
-  ["crypto", "claim"],
-  ["wallet", "free"],
-  ["token", "send"],
-  ["block", "chain"],
-  ["phantom", "now"],
-];
+import { useState } from "react";
 
 export default function Home() {
-  const [captchaPair, setCaptchaPair] = useState<[string, string]>(["", ""]);
-  const [captchaInput, setCaptchaInput] = useState("");
   const [solAddress, setSolAddress] = useState("");
   const [msg, setMsg] = useState("");
   const [msgOk, setMsgOk] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const generateCaptcha = useCallback(() => {
-    const pair =
-      CAPTCHA_WORDS[Math.floor(Math.random() * CAPTCHA_WORDS.length)];
-    setCaptchaPair(pair);
-    setCaptchaInput("");
-  }, []);
-
-  useEffect(() => {
-    generateCaptcha();
-  }, [generateCaptcha]);
-
   async function handleClaim() {
     const addr = solAddress.trim();
-    const userInput = captchaInput.trim().toLowerCase();
-    const answer = (captchaPair[0] + " " + captchaPair[1]).toLowerCase();
 
     if (!addr) {
       setMsgOk(false);
@@ -48,13 +22,6 @@ export default function Home() {
       setMsg(
         "That does not look like a valid Solana address. Please check and try again."
       );
-      return;
-    }
-
-    if (!userInput || userInput !== answer) {
-      setMsgOk(false);
-      setMsg("Captcha incorrect. Please try again.");
-      generateCaptcha();
       return;
     }
 
@@ -89,7 +56,6 @@ export default function Home() {
       setMsg("Network error. Please try again.");
     } finally {
       setLoading(false);
-      generateCaptcha();
     }
   }
 
@@ -118,8 +84,8 @@ export default function Home() {
           <h1>Free Hype</h1>
           <h2>Get Hype from the Hype Faucet</h2>
           <p>
-            I&apos;m giving away Hype to each visitor; just solve the captcha
-            then enter your Solana Receiving address and press Get Some:
+            I&apos;m giving away Hype to each visitor — just enter your Solana
+            Receiving address and press Get Some:
           </p>
 
           <div className="notice">
@@ -128,31 +94,10 @@ export default function Home() {
             sends <strong>$0.05 worth of $HYPE</strong> to your wallet.
           </div>
 
-          {/* Captcha */}
+          {/* Free Hype box */}
           <div className="captcha-box">
             <div className="captcha-text">
-              <span>{captchaPair[0]}</span>
-              <span>{captchaPair[1]}</span>
-            </div>
-            <div className="captcha-bottom">
-              <input
-                type="text"
-                value={captchaInput}
-                onChange={(e) => setCaptchaInput(e.target.value)}
-                placeholder="Type the two words:"
-              />
-              <div className="captcha-icons">
-                <span title="Refresh" onClick={generateCaptcha}>
-                  ↻
-                </span>
-                <span title="Audio">🔊</span>
-              </div>
-              <div className="recaptcha-badge">
-                <strong>reCAPTCHA</strong>
-                stop spam.
-                <br />
-                read books.
-              </div>
+              <span>Free Hype</span>
             </div>
           </div>
 
