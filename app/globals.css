@@ -1,26 +1,259 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #222;
+  background: #fff;
+}
+
+/* Top bar */
+#topbar {
+  background: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  padding: 4px 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #555;
+}
+
+/* Layout */
+#wrap {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+#sidebar {
+  width: 160px;
+  min-width: 160px;
+  padding: 20px 14px;
+  border-right: 1px solid #ddd;
+  background: #fafafa;
+}
+
+#sidebar .balance {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+#sidebar .other-sites-label {
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+#sidebar a {
+  display: block;
+  color: #888;
+  text-decoration: none;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+#sidebar a:hover {
+  text-decoration: underline;
+}
+
+/* Main content */
+#main {
+  flex: 1;
+  padding: 20px 30px;
+  max-width: 860px;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: normal;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #111;
+  margin: 24px 0 8px;
+}
+
+p {
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+/* CAPTCHA box */
+.captcha-box {
+  border: 2px solid #c00;
+  width: 310px;
+  background: #fff;
+  margin-bottom: 14px;
+}
+
+.captcha-text {
+  background: #fff;
+  padding: 8px 10px;
+  font-family: "Courier New", monospace;
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: #000;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.captcha-text span:last-child {
+  font-style: italic;
+  color: #666;
+}
+
+.captcha-bottom {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px;
+  background: #f9f9f9;
+}
+
+.captcha-bottom input[type="text"] {
+  flex: 1;
+  border: 1px solid #bbb;
+  padding: 4px 6px;
+  font-size: 13px;
+  background: #fffde6;
+  outline: none;
+}
+
+.captcha-icons {
+  display: flex;
+  flex-direction: column;
+  margin: 0 6px;
+  gap: 2px;
+}
+
+.captcha-icons span {
+  font-size: 10px;
+  color: #888;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.recaptcha-badge {
+  background: #c00;
+  color: #fff;
+  font-size: 9px;
+  padding: 3px 6px;
+  text-align: center;
+  line-height: 1.3;
+  min-width: 60px;
+}
+
+.recaptcha-badge strong {
+  display: block;
+  font-size: 11px;
+}
+
+/* Address row */
+.address-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.address-row label {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.address-row input[type="text"] {
+  width: 260px;
+  border: 1px solid #aaa;
+  padding: 4px 6px;
+  font-size: 13px;
+  outline: none;
+}
+
+.btn-get {
+  background: #e8c84a;
+  border: 1px solid #b8981a;
+  color: #333;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 5px 16px;
+  cursor: pointer;
+}
+
+.btn-get:hover {
+  background: #d4b430;
+}
+
+/* Notice box */
+.notice {
+  background: #fffbe6;
+  border: 1px solid #e0c040;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  font-size: 13px;
+  color: #555;
+}
+
+.notice strong {
+  color: #333;
+}
+
+/* Countdown display */
+#countdown-display {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  display: inline-block;
+  font-size: 13px;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+#countdown-display span {
+  font-weight: bold;
+  color: #c00;
+  font-size: 15px;
+}
+
+/* Message area */
+#msg {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #c00;
+  min-height: 18px;
+}
+
+#msg.ok {
+  color: #080;
+}
+
+a {
+  color: #1a0dab;
+}
+
+a:visited {
+  color: #551a8b;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
 }
